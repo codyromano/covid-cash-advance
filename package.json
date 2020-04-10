@@ -1,0 +1,29 @@
+{
+  "name": "covid-cash-advance",
+  "version": "1.0.0",
+  "description": "Providing free cash advances to artists impacted by COVID-19",
+  "scripts": {
+    "start": "npx tsc && node -r dotenv/config dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codyromano/covid-cash-advance.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codyromano/covid-cash-advance/issues"
+  },
+  "homepage": "https://github.com/codyromano/covid-cash-advance#readme",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "@types/node": "^13.11.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
+}

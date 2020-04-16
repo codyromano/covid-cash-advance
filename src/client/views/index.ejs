@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buy our latest music</title>
+  </head>
+  <body>
+
+  <script>
+    const AppConfig = {
+      FACEBOOK_APP_ID: "<%= FACEBOOK_APP_ID %>",
+      STRIPE_PUBLIC_KEY: "<%= STRIPE_PUBLIC_KEY %>"
+    };
+
+    const missingValues = Object
+      .keys(AppConfig)
+      .filter(key => !AppConfig[key]);
+    
+    if (missingValues.length) {
+      alert(`Please make sure you followed the instructions to update values in the
+        .env file. It looks like a few values are missing: ${missingValues.join(', ')}`);
+    }
+  </script>
+
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : AppConfig.FACEBOOK_APP_ID,
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v6.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+  (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+    <main>
+      <header>
+        <h1>Music library</h1>
+      </header>
+
+      <div class="purchase-status"></div>
+
+      <section>
+        <button class="buy-music-credits">Buy music credits</button>
+      </section>
+
+      <section>
+      </section>
+    </main>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="./manageMusicCredits.js"></script>
+  </body>
+</html>

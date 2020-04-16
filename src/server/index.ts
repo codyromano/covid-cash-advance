@@ -5,10 +5,12 @@ const app = express();
 const {
   PORT,
   STRIPE_SECRET_KEY,
+  STRIPE_PUBLIC_KEY,
+  FACEBOOK_APP_ID,
   HTTP_URL,
 } = process.env;
 
-const PUBLIC_PATH = path.join(__dirname, '../src/public');
+const PUBLIC_PATH = path.join(__dirname, '../src/client/public');
 
 const stripe = require('stripe')(STRIPE_SECRET_KEY);
 
@@ -42,8 +44,23 @@ app.post('/session', async (req, res) => {
   }
 });
 
+// The use of templates is very minimal. We use it to centralize
+// environment variables so that it's easy for non-technical people
+// to update the code & deploy the server on their own.
+app.set('views', path.join(__dirname, '../src/client/views'));
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+  return res.render('index',
+    {
+      STRIPE_PUBLIC_KEY,
+      FACEBOOK_APP_ID,
+    }
+  );
+});
+
 app.use(express.static(PUBLIC_PATH));
 
 app.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`);
+  console.log(`HTTP server is running on port ${PORT}`);
 });

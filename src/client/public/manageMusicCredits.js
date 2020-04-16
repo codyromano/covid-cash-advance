@@ -1,5 +1,5 @@
 // Replace this with your public key
-const stripe = Stripe("YOUR-PUBLIC-STRIPE-KEY");
+const stripe = Stripe(AppConfig.STRIPE_PUBLIC_KEY);
 
 const checkout = async () => {
   try {
